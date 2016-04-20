@@ -19,7 +19,7 @@ public class ReadFile {
 	private static List<String> years;
 	private static Map<String,Integer> index;
 	public static List<String> getYears() {
-		return years;
+		return years; 
 	}
 	public static List<String> getVars() {
 		return vars;
