@@ -17,7 +17,7 @@ public class JsFile {
 			jsf.outputJs("2006", "Unemployment Rate");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 	}
 	
