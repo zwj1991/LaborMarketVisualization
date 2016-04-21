@@ -37,6 +37,7 @@ public class Map {
 		   Display display = new Display();
 			Shell shell = new Shell(display);
 			shell.setLayout(new FillLayout());
+			shell.setSize(1000, 600);
 			final Browser browser;
 			try {
 				browser = new Browser(shell, SWT.NONE);
