@@ -30,6 +30,10 @@ public class Map {
 	     
 	   public static void main(String[] args)
 	   {  
+		  
+	   }
+	   
+	   public static void showMap(){
 		   Display display = new Display();
 			Shell shell = new Shell(display);
 			shell.setLayout(new FillLayout());
@@ -44,7 +48,7 @@ public class Map {
 			shell.open();
 			String path = System.getProperty("user.dir");
 			path = path.replaceAll("\\\\", "/");
-			String url = "file:///"+path+"/page/index.html";
+			String url = "file:///"+path+"/test.html";
 			browser.setUrl(url);
 			while (!shell.isDisposed()) {
 				if (!display.readAndDispatch()) display.sleep();

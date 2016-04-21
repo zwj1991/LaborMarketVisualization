@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import lmv.ui.Map;
+
 public class JsFile { 
 
 	public static void main(String[] args) {
@@ -31,14 +33,15 @@ public class JsFile {
 				
 				if(row[1].contains("Average"))
 					continue;
-				sb.append(" [ ");
+				
 				String msa = row[1].substring(1)+","+row[2].substring(0,row[2].lastIndexOf(" "));
 //				System.out.println(msa);
 				
 				List<String> latLon = ReadFile.getMap().get(msa);
 				if(latLon == null)
 					continue;
-				sb.append(latLon.get(0)+","+latLon.get(1)+"," +row[1].substring(1)+"," + row[ReadFile.getIndex().get(var) + 1]);
+				sb.append(" [ ");
+				sb.append(latLon.get(0)+","+latLon.get(1)+"," +"'"+row[1].substring(1).replace("'", " ")+"'," + row[ReadFile.getIndex().get(var) + 1]);
 				sb.append(" ], ");
 			}
 			else if(Integer.valueOf(year) < Integer.valueOf(row[0]))
@@ -48,14 +51,18 @@ public class JsFile {
 		}
 		sb.deleteCharAt(sb.lastIndexOf(","));
 		sb.append(" ]; ");
-		System.out.println(sb.toString());
-		
-		File file =new File("data.js");
+//		System.out.println(sb.toString());
+		outputFile("data.js", sb.toString());
+		Map.showMap();
+	}
+	
+	public void outputFile(String fileName,String data) throws IOException{
+		File file =new File(fileName);
 		if(!file.exists())
 			file.createNewFile();
 		 FileWriter fileWritter = new FileWriter(file.getName());
          BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-         bufferWritter.write(sb.toString());
+         bufferWritter.write(data);
          bufferWritter.flush();
          bufferWritter.close();
 	}
