@@ -94,10 +94,13 @@ public class ReadFile {
 			index.put(data.get(0)[i], i);
 		}
 		
-		for(int i = 1; i < data.size(); i+=198){
+		String breakPoint = data.get(data.size() - 1)[0];
+		for(int i = 1; i < data.size(); i++){
 			if(!years.contains(data.get(i)[0])){
 				years.add(data.get(i)[0]);				
-			}				
+			}
+			else if (data.get(i)[0].equals(breakPoint))
+				break;
 		}
 		
 //		for(String v : vars)

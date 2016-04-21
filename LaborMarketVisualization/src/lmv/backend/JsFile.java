@@ -16,7 +16,7 @@ public class JsFile {
 		ReadFile.readBaseTable("base.xls");
 		JsFile jsf = new JsFile();
 		try {
-			jsf.outputJs("2006", "Unemployment Rate");
+			jsf.outputJs("2006", "employment Rate");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,19 +45,17 @@ public class JsFile {
 				}
 					
 				sb.append(" [ ");
-				sb.append(latLon.get(0)+","+latLon.get(1)+"," +"'"+row[1].substring(1).replace("'", " ")+"'," + row[ReadFile.getIndex().get(var) + 1]);
+				sb.append(latLon.get(0)+","+latLon.get(1)+"," +"'"+msa+"'," + row[ReadFile.getIndex().get(var) + 1]);
 				sb.append(" ], ");
 			}
 			else if(Integer.valueOf(year) < Integer.valueOf(row[0]))
 				break;
-			else
-				continue;
 		}
 		sb.deleteCharAt(sb.lastIndexOf(","));
 		sb.append(" ]; ");
 //		System.out.println(sb.toString());
-//		outputFile("data.js", sb.toString());
-//		Map.showMap();
+		outputFile("data.js", sb.toString());
+		Map.showMap();
 	}
 	
 	public void outputFile(String fileName,String data) throws IOException{
