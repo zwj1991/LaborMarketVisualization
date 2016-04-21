@@ -51,7 +51,7 @@ public class ReadFile {
   
             for (int i = 1; i < rsRows; i++)     
             {     
-                String msa = readsheet.getCell(0, i).getContents();
+                String msa = readsheet.getCell(0, i).getContents().replaceAll("[^a-zA-z,]", " ").replaceAll("  ", " ");
                 List<String> latLon = new ArrayList<String>();
                 String lat = readsheet.getCell(3, i).getContents();
                 String lon = readsheet.getCell(4, i).getContents();

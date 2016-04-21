@@ -35,11 +35,15 @@ public class JsFile {
 					continue;
 				
 				String msa = row[1].substring(1)+","+row[2].substring(0,row[2].lastIndexOf(" "));
+				msa = msa.replaceAll("[^a-zA-z,]", " ").replaceAll("  ", " ");
 //				System.out.println(msa);
 				
 				List<String> latLon = ReadFile.getMap().get(msa);
-				if(latLon == null)
+				if(latLon == null){
+//					System.out.println(msa);
 					continue;
+				}
+					
 				sb.append(" [ ");
 				sb.append(latLon.get(0)+","+latLon.get(1)+"," +"'"+row[1].substring(1).replace("'", " ")+"'," + row[ReadFile.getIndex().get(var) + 1]);
 				sb.append(" ], ");
@@ -52,8 +56,8 @@ public class JsFile {
 		sb.deleteCharAt(sb.lastIndexOf(","));
 		sb.append(" ]; ");
 //		System.out.println(sb.toString());
-		outputFile("data.js", sb.toString());
-		Map.showMap();
+//		outputFile("data.js", sb.toString());
+//		Map.showMap();
 	}
 	
 	public void outputFile(String fileName,String data) throws IOException{
