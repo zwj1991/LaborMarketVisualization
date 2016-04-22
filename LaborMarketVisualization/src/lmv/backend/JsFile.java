@@ -9,20 +9,22 @@ import java.util.List;
 import lmv.ui.Map;
 
 public class JsFile { 
-
+/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ReadFile.readData("file.csv");
 		ReadFile.readBaseTable("base.xls");
 		JsFile jsf = new JsFile();
 		try {
-			jsf.outputJs("2006", "employment Rate");
+			jsf.outputJs("2006", "Unemployment Rate");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	*/
 	
+		
 	public void outputJs(String year, String var) throws IOException{
 		List<String[]> data = ReadFile.getData();
 		StringBuilder sb = new StringBuilder();

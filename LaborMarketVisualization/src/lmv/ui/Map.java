@@ -16,28 +16,57 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 
+import lmv.backend.MouseScreenShot;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-
-
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Event;
 public class Map {
 
 	
 	     
 	   public static void main(String[] args)
 	   {  
-		  
+//		  showMap();
 	   }
 	   
 	   public static void showMap(){
+		   
 		   Display display = new Display();
 			Shell shell = new Shell(display);
 			shell.setLayout(new FillLayout());
 			shell.setSize(1000, 600);
+			
+//			Button printscreen = new Button(shell, SWT.PUSH);
+//			printscreen.setText("Capture Screen");
+//			GridData gridData = new GridData(GridData.END, GridData.CENTER, false, false);
+//			gridData.horizontalSpan = 3;
+//			printscreen.setLayoutData(gridData);
+//			printscreen.addListener(SWT.Selection, new Listener() {
+//			      	public void handleEvent(org.eclipse.swt.widgets.Event arg0) {
+//					// TODO Auto-generated method stub
+//					System.out.println("Clicked on Print Screen from Shell..");
+//					MouseScreenShot screenShot = new MouseScreenShot();
+//					screenShot.captureScreen();
+//					
+//					
+//				}
+//			    });
+
+			
+			
+
 			final Browser browser;
 			try {
 				browser = new Browser(shell, SWT.NONE);

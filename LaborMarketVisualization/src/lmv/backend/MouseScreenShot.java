@@ -28,13 +28,14 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JToolBar;
 import javax.swing.JWindow;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 public class MouseScreenShot {
+/*
  public static void main(String[] args) {
 
   EventQueue.invokeLater(new Runnable() { 
-   @Override
    public void run() {
     try {
      ScreenShotWindow ssw=new ScreenShotWindow();
@@ -44,11 +45,33 @@ public class MouseScreenShot {
     }
    }
   });
- }
+  
+ }*/
+	// creating new method to call from Map UI
+	public void captureScreen(){
+		SwingUtilities.invokeLater(new Runnable() { 
+			   public void run() {
+			    try {
+			     ScreenShotWindow ssw;
+//				try {
+					ssw = new ScreenShotWindow();
+					ssw.setVisible(true);
+//				} catch (AWTException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+			     
+			    } catch (AWTException e) {
+			     e.printStackTrace();
+			    }
+			   }
+		});	
+	}
 }
 /*
  * 
  */
+@SuppressWarnings("serial")
 class ScreenShotWindow extends JWindow
 { 
  private int orgx, orgy, endx, endy;
@@ -178,7 +201,6 @@ class ToolsWindow extends JWindow
   //save button
   JButton saveButton=new JButton("Save");
   saveButton.addActionListener(new ActionListener() { 
-   @Override
    public void actionPerformed(ActionEvent e) {
     try {
      parent.saveImage();
@@ -195,9 +217,9 @@ class ToolsWindow extends JWindow
   //close button
   JButton closeButton=new JButton("Close");
   closeButton.addActionListener(new ActionListener() {
-   @Override
    public void actionPerformed(ActionEvent e) {
-    System.exit(0);
+    //System.exit(0);
+	   dispose();
    }
   });
   toolBar.add(closeButton);

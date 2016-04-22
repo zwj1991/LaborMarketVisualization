@@ -10,10 +10,11 @@ import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 
 public class ColorChooser {
-  public static void main(String args[]) {
-	  ColorChooser c = new ColorChooser();
-	  c.colorWindow();
-  }
+//  public static void main(String args[]) {
+//	  ColorChooser c = new ColorChooser();
+//	  c.colorWindow();
+//  }
+  
   public String colorWindow(){
 //	  JFrame f = new JFrame("JColorChooser Sample");
 //	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
