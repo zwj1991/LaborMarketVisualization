@@ -3,27 +3,29 @@
     <script type='text/javascript' src='api1.js'></script>
     <script type="text/javascript" src="api2.js"></script>
 	<script type="text/javascript" src="data.js"></script>
-    
+		
     <script type='text/javascript'>
      google.charts.load('current', {'packages': ['geochart']});
      google.charts.setOnLoadCallback(drawMarkersMap);
-
-var options = {};
-	     
+	var options = {};
       function drawMarkersMap() {
       var data = google.visualization.arrayToDataTable(array);
-	     options['region'] = 'US';
-       options['dataMode'] = 'marker';
+	  
 	 
 
      
+      options['region'] = 'US';
+      //options['colorAxis'] = {colors:['#00853f','orange','#e31b23']}; //orange colors
+      //options['colors']=['Crimson', 'Cyan', 'DarkCyan','DarkGreen'];
+	  options['dataMode'] = 'marker';
 
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
       chart.draw(data, options);
     };
     </script>
-    <script type="text/javascript" src="options.js"></script>
-  </head>
+<script type="text/javascript" src="option.js"></script>
+
+	</head>
   <body>
     <div id="chart_div" style="width: 900px; height: 500px;"></div>
   </body>
