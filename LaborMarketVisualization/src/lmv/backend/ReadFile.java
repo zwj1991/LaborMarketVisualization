@@ -1,6 +1,7 @@
 package lmv.backend;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
@@ -73,7 +74,7 @@ public class ReadFile {
 	public static Map<String, List<String>> getMap() {
 		return map;
 	}
-	public static void readData(String file){
+	public static void readData(File file){
 		data = new ArrayList<String[]>(); 
 		try {  	            
 			 	BufferedReader reader = new BufferedReader(new FileReader(file)); 

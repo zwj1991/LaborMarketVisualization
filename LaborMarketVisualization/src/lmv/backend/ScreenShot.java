@@ -32,7 +32,7 @@ public class ScreenShot {
 		             Robot robot = new Robot();
 		             BufferedImage bfImage = robot.createScreenCapture(new Rectangle(x, y, width, height));
 		             File path = new File(savePath);
-		             File file = new File(path, fileName+ "." + format);
+		             File file = new File(savePath+fileName+ "." + format);
 		             if(!file.exists())
 		            	 file.createNewFile();
 		             ImageIO.write(bfImage, format, file);
