@@ -35,10 +35,11 @@ public class JsFile {
 				
 				if(row[1].contains("Average"))
 					continue;
-				
-				String msa = row[1].substring(1)+","+row[2].substring(0,row[2].lastIndexOf(" "));
+				String[] state = row[2].split(" ");
+				String s = " "+state[1].replaceAll("[^a-zA-Z]", "");
+				String msa = row[1].substring(1)+","+s;
 				msa = msa.replaceAll("[^a-zA-z,]", " ").replaceAll("  ", " ");
-//				System.out.println(msa);
+				System.out.println(msa);
 				
 				List<String> latLon = ReadFile.getMap().get(msa);
 				if(latLon == null){

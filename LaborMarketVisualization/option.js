@@ -1,1 +1,1 @@
-options['colors'] = ['#ff33cc','#0000ff','#ff3333'];
+options['colors'] = ['#6666ff','#99ff33','#cc0000'];

@@ -206,13 +206,21 @@ public class Labor_Market_Visualization extends JFrame {
                 if(listOfVariables != null && listOfYears != null){
                     selectedYear= (String) listOfYears.getSelectedItem();
                     selectedVariable = (String) listOfVariables.getSelectedItem();
+                   
                 }
                 System.out.println("Selected Items:: "+ selectedYear + " , " + selectedVariable );
         		JsFile jsf = new JsFile();
         		try {
 //        			jsf.outputJs("2006", "Unemployment Rate");
-        			if(selectedYear != null && selectedVariable != null)
-        				jsf.outputJs(selectedYear,selectedVariable);
+        			if(selectedYear != null && selectedVariable != null){
+        				 StringBuilder sb = new StringBuilder();
+                         sb.append("var title = {};\n");
+                         sb.append("title['year'] = '" +selectedYear+"'; \n");
+                         sb.append("title['var'] = '" +selectedVariable+"'; \n");
+                         jsf.outputJs(selectedYear,selectedVariable);
+                         jsf.outputFile("title.js", sb.toString());
+        			}
+        				
         		} catch (IOException ie) {
         			// TODO Auto-generated catch block
         			ie.printStackTrace();

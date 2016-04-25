@@ -18,7 +18,7 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 
-import lmv.backend.MouseScreenShot;
+
 import lmv.backend.ScreenShot;
 
 import org.eclipse.swt.SWT;
@@ -75,7 +75,7 @@ public class Map {
 					save();
 					MessageBox mb = new MessageBox(shell);
 		            mb.setText("Message from SWT");
-		            mb.setMessage("Screen Captured");
+		            mb.setMessage("Screen Captured...Saving in same working directory..");
 		            mb.open();
 					
 					
@@ -98,6 +98,7 @@ public class Map {
 			String path = System.getProperty("user.dir");
 			path = path.replaceAll("\\\\", "/");
 			String url = "file:///"+path+"/test.html";
+			System.out.print(url);
 			browser.setUrl(url);
 			while (!shell.isDisposed()) {
 				if (!display.readAndDispatch()) display.sleep();
