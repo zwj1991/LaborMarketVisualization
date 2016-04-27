@@ -1,35 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lmv.ui;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
-//importing external packages
-import lmv.backend.*;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
-import chrriis.common.UIUtils;
-import chrriis.dj.nativeswing.swtimpl.NativeInterface;
-import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import javax.swing.JTable;
+import javax.swing.ImageIcon;
 
-import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import lmv.backend.JsFile;
+import lmv.backend.ReadFile;
 
-/**
- *
- * @author apurvai
- */
+
 public class Labor_Market_Visualization extends JFrame {
 	static String minColor ;
 	static String midColor ;
@@ -38,127 +34,83 @@ public class Labor_Market_Visualization extends JFrame {
 	static String selectedVariable;
 	private static  JComboBox listOfYears ;
 	private static JComboBox listOfVariables;
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        // TODO code application logic here
-       final JFrame frame = new JFrame("Prototype Labor Market UI");
 
-        //frame closing
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        // add components - slider
-//        final JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 50, 20);
-//         // Putting labels for slider
-//        Hashtable labelTable = new Hashtable();
-//        labelTable.put( new Integer( 0 ), new JLabel("1995") );
-//        labelTable.put( new Integer( 50 ), new JLabel("2016") );
-//        slider.setLabelTable( labelTable );
-//        slider.setPaintLabels(true);
-//        
-        //JButton printScreen = new JButton("Print Screen");
-        JButton loadMap  = new JButton("Load Map");
-        JButton loadFile = new JButton("Load File");
-        
-        final JPanel topPanel = new JPanel();
-        topPanel.setLayout(new FlowLayout());
-        
-        //topPanel.add(slider);
-        topPanel.add(loadMap);
-        //topPanel.add(printScreen);
-        topPanel.add(loadFile);
-        
-        
-        // add checkboxes 
-//        JCheckBox unEmployment  = new JCheckBox("Unemployment");
-//        unEmployment.setSelected(true);
-//        JCheckBox newHire = new JCheckBox("New Hire");
-//        newHire.setSelected(true);
-        // creating panel for checkboxes and adding checkboxex to it
-//        JPanel jplCheckBox = new JPanel();
-        
-        // creating Save and Rest buttons for storing and resetting labor conditions
-//        JButton conditionSave = new JButton("Save");
-//        JButton conditionReset = new JButton("Reset");
-        // creating panel to handle Labor condition Buttons 
-//        JPanel conditionButtons = new JPanel();
-//        conditionButtons.setLayout(new FlowLayout());
-//        conditionButtons.add(conditionSave);
-//        conditionButtons.add(conditionReset);
-//        
-//        jplCheckBox.setLayout(new GridLayout(0, 1));  //0 rows, 1 Column
-//        JLabel laborConditions = new JLabel("Labor Conditions:");
-//        laborConditions.setForeground(Color.BLUE);
-//        jplCheckBox.add(laborConditions);  // adding label for labor condition
-//        jplCheckBox.add(unEmployment); // adding chekbox
-//        jplCheckBox.add(newHire);      // adding checkbox
-//        jplCheckBox.add(conditionButtons); // adding Save and Reset button panel
-//        
-               
-        // creating panel to handle colorscheme condition Buttons 
-        JPanel colorOption = new JPanel();
-        colorOption.setLayout(new FlowLayout());
-        final JButton maxColorButton = new JButton("Choose Max Color");
-        final JButton minColorButton = new JButton("Choose Min Color");
-        final JButton midColorButton = new JButton("Choose Midium Color");
-        // adding three color option buttons to panel
-        colorOption.add(minColorButton);
-        colorOption.add(midColorButton);
-        colorOption.add(maxColorButton);
-        //adding Save and Rset Buttons to panel
-        JPanel colorSchemeButtons = new JPanel();
-        colorSchemeButtons.setLayout(new FlowLayout());
-        JButton colorSchemeSave = new JButton("Save");
-        JButton colorSchemeReset = new JButton("Reset");
-        colorSchemeButtons.add(colorSchemeSave);
-        colorSchemeButtons.add(colorSchemeReset);
-        // creating panel for color scheme--Menu List
-        //String listData[] ={" Continuous","Black & white "," 3-colored"};
-        //JComboBox colorList = new JComboBox(listData);
-        JPanel colorSchemePanel = new JPanel(); //creating panel for colorscheme
-        colorSchemePanel.setLayout(new GridLayout(0,1));
-        JLabel colorSchemeLabel = new JLabel("Choose Color Scheme:");
-        colorSchemeLabel.setForeground(Color.BLUE);
-        colorSchemePanel.add(colorSchemeLabel); // adding Label for color scheme
-        //colorSchemePanel.add(colorList,BorderLayout.CENTER);  // adding list of options to panel
-        colorSchemePanel.add(colorOption);//adding 3 color options
-        colorSchemePanel.add(colorSchemeButtons); // adding Save and Rset for color buttons to panel
-                
-        // combining labor condition and color scheme in one panel
-        final JPanel optionsPanel = new JPanel();
-        optionsPanel.setLayout(new FlowLayout());
-        //optionsPanel.add(jplCheckBox);
-        optionsPanel.add(colorSchemePanel);
-        
-        
-        
-        
-        // adding map panel
-        	///ImageIcon map = new ImageIcon("src/US_Map.png");
-        	///JLabel mapLabel = new JLabel(map);
-        
-        // just testing panel existence 
-        	///mapPanel.setBackground(Color.red);
-          
-      
-        // Size the frame.
-		//frame.add(webBrowserPanel, BorderLayout.CENTER);
-        frame.setSize(1000, 800);
-        frame.setLayout(new GridLayout(3,1));
-        frame.add(topPanel);
-        frame.add(optionsPanel);// adding color scheme apnel to frame
-        
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		
+	/**
+	 * Create the frame.
+	 */
+	
+		 final JFrame frame = new JFrame("Prototype Labor Market UI");
+
+	        //frame closing
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setBounds(100, 100, 725, 465);
+	    
+		JPanel contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		frame.setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		final JButton minColorButton = new JButton("Select Min Color");
+		minColorButton.setBounds(130, 187, 133, 39);
+		contentPane.add(minColorButton);
+		
+		final JButton midColorButton = new JButton("Select Mid Color");
+		midColorButton.setBounds(273, 187, 133, 39);
+		contentPane.add(midColorButton);
+		
+		final JButton maxColorButton = new JButton("Select Max Color");
+		maxColorButton.setBounds(416, 187, 133, 39);
+		contentPane.add(maxColorButton);
+		
+		JButton colorSchemeSave = new JButton("Save");
+		colorSchemeSave.setBounds(200, 237, 96, 39);
+		contentPane.add(colorSchemeSave);
+		
+		JButton colorSchemeReset = new JButton("Reset");
+		colorSchemeReset.setBounds(331, 237, 96, 37);
+		contentPane.add(colorSchemeReset);
+		
+		JLabel colorSchemeLabel = new JLabel("Choose your Color Scheme");
+		colorSchemeLabel.setForeground(Color.BLUE);
+		colorSchemeLabel.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 12));
+		colorSchemeLabel.setBounds(130, 162, 182, 14);
+		contentPane.add(colorSchemeLabel);
+		
+		JButton loadMap = new JButton("Load Map");
+		loadMap.setForeground(new Color(0, 0, 0));
+		loadMap.setBounds(453, 293, 96, 45);
+		contentPane.add(loadMap);
+		
+		final JPanel topPanel = new JPanel();
+		topPanel.setBounds(130, 71, 419, 68);
+		topPanel.setBackground(Color.white);
+		contentPane.add(topPanel);
+		topPanel.setLayout(new FlowLayout());
+		
+		JButton loadFile = new JButton("Load File");
+		loadFile.setBounds(10, 25, 100, 38);
+		topPanel.add(loadFile);
+		
+		JLabel projectLabel = new JLabel("Labor Market Visualization");
+		projectLabel.setForeground(Color.RED);
+		projectLabel.setFont(new Font("Rockwell Condensed", Font.PLAIN, 32));
+		projectLabel.setIcon(new ImageIcon("credits.png"));
+		projectLabel.setBounds(130, 11, 419, 51);
+		contentPane.add(projectLabel);
+		final JLabel labelVar = new JLabel("List of Variables: ");
+        final JLabel labelYear = new JLabel("List of Years: ");
+		//adding event listeners 
         ReadFile.readBaseTable("base.xls");
         
-        //Show frame
-        frame.setVisible(true);
-        
-        // adding events to buttons
-        
-        // Action Listener for Load File button
-        loadFile.addActionListener(new ActionListener() {  // Load Map Action Listener
+		loadFile.addActionListener(new ActionListener() {  // Load Map Action Listener
         	public void actionPerformed(ActionEvent e)
             {
                 JFileChooser chooser = new JFileChooser();
@@ -170,25 +122,37 @@ public class Labor_Market_Visualization extends JFrame {
                 ReadFile.readData(selectedPfile); //Reading file
                 // System.out.println(ReadFile.getYears().get(0));
                 // Populating No.of Years based on User selected File
-                listOfYears= new JComboBox(ReadFile.getYears().toArray());
-                JLabel labelYear = new JLabel("List of Years: ");
-                labelYear.setForeground(Color.BLUE);
+                if(listOfYears != null){
+                	topPanel.remove(listOfYears);
+                }
+                topPanel.remove(labelYear);
                 topPanel.add(labelYear);
+                
+                	
+                listOfYears= new JComboBox(ReadFile.getYears().toArray());
+               
+                labelYear.setForeground(Color.BLUE);
+                
+               
                 topPanel.add(listOfYears);
                 
                 
                 //Populating No.of Variables based on User selecte File
                 System.out.println(ReadFile.getVars());
+                if(listOfVariables != null)
+                	topPanel.remove(listOfVariables);
                 listOfVariables=new JComboBox(ReadFile.getVars().toArray());
-                JLabel labelVar = new JLabel("List of Variables: ");
-                labelVar.setForeground(Color.BLUE);
-                optionsPanel.add(labelVar);
-                optionsPanel.add(listOfVariables);
                 
-                Toolkit tk = Toolkit.getDefaultToolkit();
-                int xSize = ((int) tk.getScreenSize().getWidth());
-                int ySize = ((int) tk.getScreenSize().getHeight());
-                frame.setSize(xSize,ySize);
+                labelVar.setForeground(Color.BLUE);
+                topPanel.add(listOfVariables);
+                
+               frame.repaint();
+                frame.setSize(0, 0);
+//                Toolkit tk = Toolkit.getDefaultToolkit();
+//                int xSize = ((int) tk.getScreenSize().getWidth());
+//                int ySize = ((int) tk.getScreenSize().getHeight());
+//                frame.setSize(xSize,ySize);
+                frame.setSize(1000,800);
                 
                 
                 
@@ -239,30 +203,16 @@ public class Labor_Market_Visualization extends JFrame {
                 });
                 t.setPriority(10);
                 t.start();
-                Toolkit tk = Toolkit.getDefaultToolkit();
-                int xSize = ((int) tk.getScreenSize().getWidth());
-                int ySize = ((int) tk.getScreenSize().getHeight());
-                frame.setSize(xSize,ySize);
+//                Toolkit tk = Toolkit.getDefaultToolkit();
+//                int xSize = ((int) tk.getScreenSize().getWidth());
+//                int ySize = ((int) tk.getScreenSize().getHeight());
+//                frame.setSize(xSize,ySize);
+                frame.setSize(1000,800);
                 
             }
         });  
         
-        //Adding Action Listener for Print Screen
-//        printScreen.addActionListener(new ActionListener() {  // Load Map Action Listener
-//        	public void actionPerformed(ActionEvent e)
-//            {
-//                //Execute when  "Print Screen" button is clicked
-//                System.out.println("Clicked Print Screen..");
-//                frame.setSize(100,100);
-////                frame.setVisible(false);
-////                MouseScreenShot screenShot = new MouseScreenShot();
-////				screenShot.captureScreen();
-//                Map.save();
-////                frame.setVisible(true);
-//                frame.setSize(1000, 800);
-//            }
-//        });  
-//        
+       
       //Adding Listener to all color buttons
       
         //Adding listener to mincolorbutton
@@ -342,8 +292,9 @@ public class Labor_Market_Visualization extends JFrame {
         		maxColorButton.setBackground(null);
             }
         }); 
-    }
 
-		
-    
+        frame.setSize(1000,800);
+	    frame.setVisible(true);
+	}
+
 }
