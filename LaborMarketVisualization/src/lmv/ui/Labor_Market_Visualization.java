@@ -119,7 +119,19 @@ public class Labor_Market_Visualization extends JFrame {
                 chooser.showOpenDialog(null);
                 File selectedPfile = chooser.getSelectedFile();
                 System.out.println("Selected File is :: "+selectedPfile);
-                ReadFile.readData(selectedPfile); //Reading file
+                // just checking extension
+                String filename = selectedPfile.getName();
+                String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
+                String csv = "csv";
+                if(!csv.equals(extension)){
+                	JOptionPane.showMessageDialog(null, "Choose file with .csv extension!!");
+                	return;
+                }
+                else{
+                	 ReadFile.readData(selectedPfile);//Reading file
+                }
+                // end of checking extension
+               
                 // System.out.println(ReadFile.getYears().get(0));
                 // Populating No.of Years based on User selected File
                 if(listOfYears != null){
@@ -259,6 +271,7 @@ public class Labor_Market_Visualization extends JFrame {
             {
         		if(minColor==null || midColor==null || maxColor==null){
         			JOptionPane.showMessageDialog(null, "Please Select all three colors");
+        			return;
         		}
         		
         		//System.out.println("User Selected Following colors:: ");
