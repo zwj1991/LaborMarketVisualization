@@ -46,7 +46,7 @@ public class Labor_Market_Visualization extends JFrame {
 	 * Create the frame.
 	 */
 	
-		 final JFrame frame = new JFrame("Prototype Labor Market UI");
+		 final JFrame frame = new JFrame(" Labor Market Visualizations");
 
 	        //frame closing
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
